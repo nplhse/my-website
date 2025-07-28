@@ -15,10 +15,15 @@
         "symfony/yaml": "7.3.*"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.84",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-symfony": "^2.0"
     },
     "config": {
         "allow-plugins": {
             "php-http/discovery": true,
+            "phpstan/extension-installer": true,
             "symfony/flex": true,
             "symfony/runtime": true
         },
@@ -55,6 +60,10 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "check-code": [
+            "vendor/bin/phpstan analyse",
+            "vendor/bin/php-cs-fixer fix"
         ]
     },
     "conflict": {
@@ -62,7 +71,7 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
+            "allow-contrib": true,
             "require": "7.3.*"
         }
     }
